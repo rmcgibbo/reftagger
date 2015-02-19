@@ -190,7 +190,8 @@ $(function () {
         $('#btn-toggle-format').text('Plain ').append('<span class="caret"></span>');
     }
 
-    $('#form-box').val('Baggiolini, M., Dewald, B. & Moser, B. Adv. Immunol. 55, 97-179 (1994)');
+    // placeholder
+    // $('#form-box').val('Baggiolini, M., Dewald, B. & Moser, B. Adv. Immunol. 55, 97-179 (1994)');
 
     var queryTimeOut;
     $("#form-box").keyup(function(){

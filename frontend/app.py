@@ -57,10 +57,11 @@ class IndexHandler(tornado.web.RequestHandler):
 application = tornado.web.Application([
     (r"/", IndexHandler),
     (r"/resolve", ResolveHandler),
-    (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': STATIC_PATH}),
-    # (r"/static/(.*)", NoCacheStaticFileHandler, {"path": STATIC_PATH})
+    # (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': STATIC_PATH}),
+    # handled with nginx in production anyways.
+    (r"/static/(.*)", NoCacheStaticFileHandler, {"path": STATIC_PATH})
 ])
 
 if __name__ == "__main__":
-    application.listen(5000)
+    application.listen(int(sys.argv[1]))
     tornado.ioloop.IOLoop.instance().start()
