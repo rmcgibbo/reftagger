@@ -5,6 +5,7 @@ from os.path import dirname, abspath, join
 
 import pycrfsuite
 from unidecode import unidecode
+from tornado.options import options, define
 import tornado.ioloop
 import tornado.web
 
@@ -62,5 +63,9 @@ application = tornado.web.Application([
 ])
 
 if __name__ == "__main__":
-    application.listen(int(sys.argv[1]))
+    define("host", default="localhost", help="app host", type=str)
+    define("port", default=5000, help="app port", type=int)
+    options.parse_command_line()
+
+    application.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
