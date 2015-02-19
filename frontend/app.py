@@ -1,6 +1,7 @@
 import sys
 import json
 import pickle
+import functools
 from os.path import dirname, abspath, join
 
 import pycrfsuite
@@ -28,20 +29,22 @@ class ResolveHandler(tornado.web.RequestHandler):
     def get(self):
         q = self.get_argument('q', default=None)
         if q is None:
-            #? bail
             self.write({'tokens': [], 'tags': [], 'q': ''})
-            return
+        else:
+            result = self._tag(q)
+            self.write(result)
 
+    @functools.lru_cache(maxsize=1024)
+    def _tag(self, q):
         q = unidecode(q)
         tokens = tokenize(q)
 
         if len(tokens) == 0:
-            self.write({'tokens': [], 'tags': [], 'q': ''})
-            return
+            return {'tokens': [], 'tags': [], 'q': ''}
 
         X = featurize(tokens)
         tags = TAGGER.tag(X)
-        self.write({'tokens': tokens, 'tags': tags, 'q': q})
+        return {'tokens': tokens, 'tags': tags, 'q': q}
 
 
 class IndexHandler(tornado.web.RequestHandler):

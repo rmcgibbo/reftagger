@@ -219,8 +219,8 @@
             $('#btn-toggle-format').text('Plain ').append('<span class="caret"></span>');
         }
 
-        // placeholder
-        // $('#form-box').val('Springer, T.A. and James Carville  "Biological " J. Chem. Phys. 1993');
+        // show placeholder's output
+        query($('#form-box').attr('placeholder'));
 
         var queryTimeOut;
         $("#form-box").keyup(function(){
