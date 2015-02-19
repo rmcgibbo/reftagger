@@ -1,8 +1,9 @@
-Reference data
+Auxiliary Data
 ==============
 
-Auxiliary data files. These are used in the featurization step to provide
-semantically rich features.
+These are data files that are not _exactly_ part of the training set, since they
+they're not parsed citations. They're used in the token featurization to provide
+semantically rich features that should make the classification more accurate.
 
 1. `common-surnames.txt.gz`
 
@@ -28,6 +29,6 @@ semantically rich features.
 
     http://norvig.com/ngrams/count_1w.txt
 
-4. WordNet
+4. [WordNet](http://wordnet.princeton.edu/)
 
     We also use wordnet, through the `nltk` interface. See `featurize.py`.
