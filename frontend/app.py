@@ -46,17 +46,19 @@ class ResolveHandler(tornado.web.RequestHandler):
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        with open(join(STATIC_PATH, 'index.html'), 'r') as f:
-            self.write(f.read())
-        # self.render('static/index.html')
-    def set_extra_headers(self, path):
-        self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        # with open(join(STATIC_PATH, 'index.html'), 'r') as f:
+        #     self.write(f.read())
+        self.render('static/index.html')
 
+    # def set_extra_headers(self, path):
+    #     self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+    #
 
 application = tornado.web.Application([
     (r"/", IndexHandler),
     (r"/resolve", ResolveHandler),
-    (r"/static/(.*)", NoCacheStaticFileHandler, {"path": STATIC_PATH})
+    (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': STATIC_PATH}),
+    # (r"/static/(.*)", NoCacheStaticFileHandler, {"path": STATIC_PATH})
 ])
 
 if __name__ == "__main__":
