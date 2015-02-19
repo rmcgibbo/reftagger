@@ -43,22 +43,21 @@ class ResolveHandler(tornado.web.RequestHandler):
         self.write({'tokens': tokens, 'tags': tags, 'q': q})
 
 
-
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        # with open(join(STATIC_PATH, 'index.html'), 'r') as f:
-        #     self.write(f.read())
-        self.render('static/index.html')
+        with open(join(STATIC_PATH, 'index.html'), 'r') as f:
+            self.write(f.read())
 
-    # def set_extra_headers(self, path):
-    #     self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
-    #
+    def set_extra_headers(self, path):
+        self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+
 
 application = tornado.web.Application([
-    (r"/", IndexHandler),
     (r"/resolve", ResolveHandler),
-    # (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': STATIC_PATH}),
-    # handled with nginx in production anyways.
+
+    # in production, these are handled by nginx, so here we just have
+    # them as non-caching routes for dev.
+    (r"/", IndexHandler),
     (r"/static/(.*)", NoCacheStaticFileHandler, {"path": STATIC_PATH})
 ])
 

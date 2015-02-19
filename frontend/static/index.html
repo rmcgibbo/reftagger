@@ -17,8 +17,6 @@
     <script src="static/file.js"></script>
 
 <style>
-
-
   p.lead {
      margin-bottom: 2em;
   }
@@ -34,17 +32,23 @@
       margin-top: -10;
       margin-right: -15;
   }
-
 </style>
-
-
 </head>
+
 
 <body>
 
 <!-- Begin page content -->
 <div class="container">
-<a href="https://github.com/rmcgibbo/reftagger"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-grey@2x.png" alt="Fork me on GitHub"></a>
+
+<script>
+$(function() {
+    if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 900) {
+        var el = $("<a href='https://github.com/rmcgibbo/reftagger'><img style='position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;' src='http://aral.github.com/fork-me-on-github-retina-ribbons/right-grey@2x.png' alt='Fork me on GitHub'></a>");
+        el.appendTo('body');
+    }
+});
+</script>
 
 <!-- HEADER -->
 <div class="page-header">
