@@ -38,4 +38,4 @@ Scripts
   It prroduces jsonlines output containing styled citations that have been
   tokenized and tagged.
 
-    {"value": "J. Fransson, A. Talamelli, L. Brandt, and C. Cossu, Phys. Rev. Lett. 96, (2006).", "tagged": [["J.", "given"], ["Fransson", "fam"], [",", "None"], ["A.", "given"], ["Talamelli", "fam"], [",", "None"], ["L.", "given"], ["Brandt", "fam"], [",", "None"], ["and", "None"], ["C.", "given"], ["Cossu", "fam"], [",", "None"], ["Phys.", "journ"], ["Rev.", "journ"], ["Lett.", "journ"], ["96", "vol"], [",", "None"], ["(", "None"], ["2006", "year"], [").", "None"]]}
+    `{"value": "J. Fransson, A. Talamelli, L. Brandt, and C. Cossu, Phys. Rev. Lett. 96, (2006).", "tagged": [["J.", "given"], ["Fransson", "fam"], [",", "None"], ["A.", "given"], ["Talamelli", "fam"], [",", "None"], ["L.", "given"], ["Brandt", "fam"], [",", "None"], ["and", "None"], ["C.", "given"], ["Cossu", "fam"], [",", "None"], ["Phys.", "journ"], ["Rev.", "journ"], ["Lett.", "journ"], ["96", "vol"], [",", "None"], ["(", "None"], ["2006", "year"], [").", "None"]]}`
