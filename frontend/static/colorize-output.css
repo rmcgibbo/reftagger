@@ -1,0 +1,25 @@
+#output-zone > span.fam {
+    color: #B02826;
+}
+#output-zone > span.given {
+    color: #003399;
+}
+#output-zone > span.title {
+    color: #859900;
+}
+#output-zone > span.year {
+    color: #2aa198;
+}
+#output-zone > span.vol {
+    color: #6c71c4;
+}
+#output-zone > span.page {
+    color: #cb4b16;
+}
+#output-zone > span.journ {
+    color: #d33682;
+}
+
+
+
+

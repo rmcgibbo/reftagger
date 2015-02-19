@@ -1,0 +1,6 @@
+python-crfsuite
+unidecode
+requests
+nltk
+tornado
+titlecase

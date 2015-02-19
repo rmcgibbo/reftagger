@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/sticky-footer.css" rel="stylesheet">
+    <link href="static/colorize-output.css" rel="stylesheet">
+    <link href="static/base.css" rel="stylesheet">
+
+    <script src="static/file.js"></script>
+
+<style>
+  p.lead {
+     margin-bottom: 2em;
+  }
+  #output-zone {
+      margin-right: 3em;
+      min-height: 5em;
+      white-space: pre-wrap;
+  }
+  textarea {
+      resize: none;
+  }
+  #dropdown-button {
+      margin-top: -10;
+      margin-right: -15;
+  }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- Begin page content -->
+<div class="container">
+<a href="https://github.com/rmcgibbo/reftagger"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-grey@2x.png" alt="Fork me on GitHub"></a>
+
+<!-- HEADER -->
+<div class="page-header">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation"><a href="#">About</a></li>
+      <li role="presentation"><a href="#">Issues</a></li>
+    </ul>
+  </nav>
+  <h1>Reference Tagger</h1>
+</div>
+
+<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisl nulla, eleifend vel facilisis quis, finibus nec augue. Sed sed bibendum odio.</p>
+
+<!-- BODY -->
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+      <p><textarea class="form-control" id="form-box" class="form-control" placeholder="Springer, T. A. Annu. Rev. Physiol. 57, 827-872 (1995)" rows="4"></textarea></p>
+  </div>
+</div>
+
+<div class="row"><div class="col-md-offset-0 col-md-12">
+  <br/><br/>
+
+  <div class="highlight">
+
+    <div class="btn-group pull-right" id="dropdown-button">
+      <button type="button" id="btn-toggle-format" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        Plain <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#plain">Plain</a></li>
+        <!-- <li><a href="#">EndNote</a></li> -->
+        <li><a href="#bibtex">BibTeX</a></li>
+      </ul>
+    </div>
+
+    <pre onclick="SelectText('output-zone')" oncontextmenu="SelectText('output-zone')" id="output-zone"></pre>
+  </div>
+</div></div>
+
+
+
+</div> <!-- container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">
+    Built by <a href="http://rmcgibbo.org/">@rmcgibbo</a>
+        with <a href="http://www.chokkan.org/software/crfsuite/">crfsuite</a>,
+        <a href="http://www.nltk.org/">nltk</a>,
+        <a href="http://www.crossref.org/">crossref</a>
+        and more.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
