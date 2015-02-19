@@ -1,5 +1,9 @@
-Scripts
--------
+Scripts for Acquiring Training Data
+-----------------------------------
+
+These are the scripts for getting training data. They download citations from the web,
+and then parse and format them in such a way that that they're suitable for learning
+from.
 
 1. `download-citations.py`
 
