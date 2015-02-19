@@ -67,5 +67,5 @@ if __name__ == "__main__":
     define("port", default=5000, help="app port", type=int)
     options.parse_command_line()
 
-    application.listen(options.port)
+    application.listen(options.port, options.host)
     tornado.ioloop.IOLoop.instance().start()
