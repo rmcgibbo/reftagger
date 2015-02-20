@@ -31,7 +31,6 @@ from titlecase import titlecase
 from termcolor import colored
 from unidecode import unidecode
 
-sys.path.insert(0, join(dirname(abspath(__file__)), '..'))
 from bibtagger.tokenizer import tokenize
 from bibtagger.chunker import tokenize_and_tag
 from bibtagger.given_names import abbreviations

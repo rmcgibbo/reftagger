@@ -10,15 +10,15 @@ from tornado.options import options, define
 import tornado.ioloop
 import tornado.web
 
-# load up the tokenizer
-STATIC_PATH = join(dirname(abspath(__file__)), 'static')
-PROJECT_DIR = join(dirname(abspath(__file__)), '..')
-sys.path.insert(0, PROJECT_DIR)
 from bibtagger.tokenizer import tokenize
 from bibtagger.featurize import featurize
 
+# load up the tokenizer
+PROJECT_DIR = join(dirname(abspath(__file__)), '..')
+STATIC_PATH = join(dirname(abspath(__file__)), 'static')
 TAGGER = pycrfsuite.Tagger()
 TAGGER.open(join(PROJECT_DIR, 'model.crfsuite'))
+
 
 class NoCacheStaticFileHandler(tornado.web.StaticFileHandler):
     def set_extra_headers(self, path):

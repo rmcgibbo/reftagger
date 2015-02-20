@@ -7,4 +7,5 @@ setup(
     url='http://github.com/rmcgibbo/reftagger',
     packages=find_packages(),
     package_data={'bibtagger': ['fixeddata/*']},
+    zip_safe=False,
 )

@@ -3,13 +3,12 @@ import gzip
 import functools
 from pprint import pprint
 from os.path import join, dirname, abspath
+from pkg_resources import resource_filename
+from nltk.corpus import wordnet as wn
 
 DIGITS = set([str(e) for e in range(10)])
 UPPERCASE = set(string.ascii_uppercase)
-PROJECT_ROOT = join(dirname(abspath(__file__)), '..')
-REFERENCE_DATA = join(PROJECT_ROOT, 'reference-data')
-
-from nltk.corpus import wordnet as wn
+REFERENCE_DATA = resource_filename('bibtagger', 'fixeddata')
 
 with gzip.open(join(REFERENCE_DATA, 'common-given-names.txt.gz')) as f:
     COMMON_GIVEN_NAMES = frozenset({e.strip().decode('utf-8').lower() for e in f.readlines()})
