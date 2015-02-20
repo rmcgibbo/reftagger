@@ -1,4 +1,7 @@
 Reference Tagger
 ================
+*Parse and tag unstructured academic citations.* http://reftag.rmcgibbo.org/
 
-page, vol, year, journ, given, title, fam, issue
+```
+tags = ('page', 'vol', 'year', 'journ', 'given', 'title', 'fam', 'issue')
+```
