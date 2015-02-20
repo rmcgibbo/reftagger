@@ -28,19 +28,19 @@ from difflib import SequenceMatcher
 from pprint import pprint
 
 from titlecase import titlecase
-from termcolor import colored
 from unidecode import unidecode
 
 from bibtagger.tokenizer import tokenize
 from bibtagger.chunker import tokenize_and_tag
 from bibtagger.given_names import abbreviations
+from bibtagger.print_tokens import render_tokens
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('source', help='source : DOI metadata and styled citations for each reference (jsonlines)')
-    p.add_argument('dest', help='dest : tokenized and tagged citations (jsonlines)')
+    p.add_argument('source', help='DOI metadata and styled citations for each reference (jsonlines)')
+    p.add_argument('dest', help='tokenized and tagged citations (jsonlines)')
     p.add_argument('-v', '--verbose', action="store_true", help='Print out the tagged citations in ASCII colors as they\'re being tagged. This helps a lot to debug')
     args = p.parse_args()
 
@@ -141,24 +141,9 @@ def tag_citation(text, props, verbose=True):
     text = ' '.join([e for e in text.split() if not skip(e)])
     tokens, tags = tokenize_and_tag(text, props)
 
-
     if verbose:
-        c = {'page': 'red', 'vol': 'magenta', 'year': 'cyan', 'journ': 'yellow',
-             'given': 'magenta', 'fam': 'red', None: 'white', 'title': 'green',
-             'issue': 'green'}
+        print(render_tokens(list(zip(tags, tokens))))
 
-        line = []
-        n_tokens = len(tokens)
-        for i in range(n_tokens):
-            tok = tokens[i]
-            line.append(colored(tok, color=c[tags[i]]))
-            if tok == '(':
-                continue
-            if i < n_tokens-1:
-                tok1 = tokens[i+1]
-                if tok1 not in [',', ')', ';', ':', '.']:
-                    line.append(' ')
-        print(''.join(line))
 
     if not any(t=='journ' for t in tags):
         print('ERROR NO JOURNAL ENTRY MATCHED IN', text, file=sys.stderr)
