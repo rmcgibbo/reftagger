@@ -141,9 +141,9 @@ def tag_citation(text, props, verbose=True):
     text = ' '.join([e for e in text.split() if not skip(e)])
     tokens, tags = tokenize_and_tag(text, props)
 
+    out = list(zip(tags, tokens))
     if verbose:
-        print(render_tokens(list(zip(tags, tokens))))
-
+        print(render_tokens(out))
 
     if not any(t=='journ' for t in tags):
         print('ERROR NO JOURNAL ENTRY MATCHED IN', text, file=sys.stderr)
@@ -157,8 +157,7 @@ def tag_citation(text, props, verbose=True):
         print()
         return None
 
-
-    return list(zip(tokens, tags))
+    return out
 
 if __name__ == '__main__':
     main()

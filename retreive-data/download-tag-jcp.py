@@ -1,5 +1,5 @@
 '''Download and tag training data from the refence section
-of random PLoS ONE papers
+of random J. Chem. Phys. papers
 '''
 import json
 import argparse
@@ -52,11 +52,6 @@ def itertokens(citation_node):
         'reference-issue': 'issue',
         'reference-suffix': 'fam',
         'reference-article-title': 'title',
-        # 'suffix': 'given',
-        # 'article-title': 'title',
-        # 'etal': None,
-        # 'issue': 'issue',
-        # 'issue-id': 'issue',
     }
 
     tags_seen = set()
@@ -72,25 +67,23 @@ def itertokens(citation_node):
 
 
             if klass in ('citation-label', 'group-citation-label'):
-                continue
-            if klass == 'reference-fpage':
+                pass
+            elif klass == 'reference-fpage':
                 fpage = part.text
                 if len(children) > 1 and children[1]['class'][0] == 'reference-lpage':
                     middle = children.pop(0)
                     part = children.pop(0)
                     lpage = part.text
                     yield from (('page', t) for t in unitokenize(fpage + middle + lpage))
-
                 else:
                     yield from (('page', t) for t in unitokenize(fpage))
-                    continue
-
-            if klass not in xmltag_to_ourtag:
-                raise UnexpectedTagError(str(citation_node), klass)
             else:
-                tags_seen.add(xmltag_to_ourtag[klass])
+                if klass not in xmltag_to_ourtag:
+                    raise UnexpectedTagError(str(citation_node), klass)
+                else:
+                    tags_seen.add(xmltag_to_ourtag[klass])
 
-            yield from ((xmltag_to_ourtag[klass], t) for t in unitokenize(part.text))
+                yield from ((xmltag_to_ourtag[klass], t) for t in unitokenize(part.text))
         else:
             if 'given' in tags_seen:
                 yield from ((None, t) for t in unitokenize(part))
