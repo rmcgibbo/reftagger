@@ -1,6 +1,8 @@
+install marisa-trie
 python-crfsuite
 unidecode
 requests
 nltk
 tornado
 titlecase
+
