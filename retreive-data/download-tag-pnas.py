@@ -1,6 +1,8 @@
 '''Download and tag training data from the refence section
 of random J. Chem. Phys. papers
 '''
+import time
+import sys
 import json
 import argparse
 import requests
@@ -12,6 +14,7 @@ from bibtagger.tokenizer import tokenize
 from bibtagger.print_tokens import render_tokens
 
 unitokenize = lambda x: tokenize(unidecode(x)) if x is not None else []
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
 
 
 def main():
@@ -28,7 +31,8 @@ def main():
                 try:
                     tokens = list(itertokens(cit))
                     if any(len(tok)>5 and tag is None for (tag, tok) in tokens):
-                        print('ERROR LONG TOKEN NOT MATCHED IN', text, file=sys.stderr)
+                        print('ERROR LONG TOKEN NOT MATCHED IN', render_tokens(tokens), file=sys.stderr)
+                        continue
 
                     if args.verbose:
                         print(render_tokens(tokens))
@@ -102,16 +106,20 @@ def sample_pnas(n_articles):
     dois = (e['DOI'] for e in r.json()['message']['items'])
 
     for doi in dois:
-        r = requests.get('http://dx.doi.org/%s' % doi)
+        r = requests.get('http://dx.doi.org/%s' % doi, headers={'User-Agent': USER_AGENT})
         soup = BeautifulSoup(r.content, 'html.parser')
         full_text_link = soup.find('a', {'rel': 'view-full-text'})
         if full_text_link is None:
+            print(r.url)
+            print(r.content)
             print('Skipping. No full text HTML availavle')
+            time.sleep(4)
             continue
 
         r2 = requests.get('http://www.pnas.org' + full_text_link['href'])
         print(r2.url)
         yield doi, BeautifulSoup(r2.content)
+        time.sleep(4)
 
 
 
