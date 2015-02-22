@@ -72,16 +72,33 @@ def featurize(phrase):
 
 
     n = len(phrase)
-    local_features = [get_local_features(word) for word in phrase]
-    shift_features = [{} for _ in local_features]
+
+    local_features = [dict() for _ in phrase]
+    shift_features = [dict() for _ in local_features]
+    for i, word in enumerate(phrase):
+        local_features[i].update(get_local_features(word))
 
     for i in range(n):
         local_features[i]['known_journal'] = False
+
     for i in range(n):
         matches = JOURNAL_TRIE.prefixes(untokenize(phrase[i:]))
-        for match in matches:
-            for j, tok in enumerate(tokenize(match)):
+        if len(matches) == 0:
+            continue
+
+        match = max(matches, key=len)
+        t = tokenize(match)
+        # only deal with multitoken matches. for single token journals, there
+        # are a lot of false positives, and they can presumably be handled
+        # easily by the model in training
+        if len(t) > 2:
+            for j, tok in enumerate(t):
                 local_features[i+j]['known_journal'] = True
+
+    # print(untokenize(phrase))
+    # print([(i, phrase[i]) for i, e in enumerate(local_features) if e['known_journal']])
+    # print()
+
 
     for i in range(1, n):
         shift_features[i].update({k+'[-1]': v for k, v in local_features[i-1].items()})

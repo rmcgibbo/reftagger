@@ -49,10 +49,10 @@ def main():
             print('%d/%d' % (i, len(phrases)))
         X.append(featurize(phrase))
 
-    print('len(X)', len(X))
-    print('len(y)', len(y))
-    print(X[0])
-    print(y[0])
+    #print('len(X)', len(X))
+    #print('len(y)', len(y))
+    #print(X[0])
+    #print(y[0])
 
 
     with open(args.dest, 'wb') as fout:
