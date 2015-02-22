@@ -20,6 +20,26 @@
 
 
 <style>
+  .success-button-group {
+      float: right;
+      margin-right: -15px;
+  }
+  span.success-button-text {
+      position: relative;
+      font-size: 110%;
+      bottom: 2px;
+  }
+  a.success-button {
+    font-size: 20px;
+  }
+  #success-button-check {
+      color: #1A9622;
+  }
+  #success-button-x {
+      padding-left: 3px;
+      color: #AB2020;
+  }
+
   p.lead {
      margin-bottom: 2em;
   }
@@ -95,6 +115,13 @@ $(function() {
 
     <pre onclick="SelectText('output-zone')" oncontextmenu="SelectText('output-zone')" id="output-zone"></pre>
   </div>
+
+  <span class='success-button-group'>
+  <span class='success-button-text'>Rate accuracy: &nbsp;</span>
+  <a class="success-button" id='success-button-check' href='#'><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+  <a class="success-button" id='success-button-x' href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+  </span>
+
 </div></div>
 
 

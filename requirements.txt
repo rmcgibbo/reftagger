@@ -5,4 +5,4 @@ requests
 nltk
 tornado
 titlecase
-
+streql

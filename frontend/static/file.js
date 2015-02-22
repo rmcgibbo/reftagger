@@ -238,6 +238,13 @@
             top.text($(this).text() + ' ').append('<span class="caret"></span>');
             render_output_zone();
         });
+
+        $("#success-button-check").click(function() {
+            $.post('/feedback/accept', JSON.stringify(API_DATA));
+        });
+        $("#success-button-x").click(function() {
+            $.post('/feedback/reject', JSON.stringify(API_DATA));
+        });
     });
 
 })();
