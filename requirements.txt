@@ -1,4 +1,4 @@
-install marisa-trie
+marisa-trie
 python-crfsuite
 unidecode
 requests
