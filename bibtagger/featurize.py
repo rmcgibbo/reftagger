@@ -6,16 +6,17 @@ from os.path import join, dirname, abspath
 from pkg_resources import resource_filename
 
 import marisa_trie
+from titlecase import titlecase
 from nltk.corpus import wordnet as wn
 from bibtagger.tokenizer import untokenize, tokenize
 
-def _load_reference(fname, lower=False):
+def _load_reference(fname, trans=None):
     with gzip.open(resource_filename('bibtagger', join('fixeddata', fname))) as f:
         items = set()
         for line in f:
             line = line.strip().decode('utf-8')
-            if lower:
-                line = line.lower()
+            if trans is not None:
+                line = trans(line)
             items.add(line)
         return frozenset(items)
 
@@ -23,9 +24,9 @@ def _load_reference(fname, lower=False):
 DIGITS = set([str(e) for e in range(10)])
 UPPERCASE = set(string.ascii_uppercase)
 COMMON_GIVEN_NAMES = _load_reference('common-given-names.txt.gz')
-COMMON_SURNAMES = _load_reference('common-surnames.txt.gz', lower=True)
+COMMON_SURNAMES = _load_reference('common-surnames.txt.gz', trans=str.lower)
 COMMON_WORDS = _load_reference('common-words.txt.gz')
-JOURNAL_SET = _load_reference('journals.txt.gz')
+JOURNAL_SET = _load_reference('journals.txt.gz', trans=titlecase)
 JOURNAL_TRIE = marisa_trie.Trie(JOURNAL_SET)
 
 
@@ -82,7 +83,7 @@ def featurize(phrase):
         local_features[i]['known_journal'] = False
 
     for i in range(n):
-        matches = JOURNAL_TRIE.prefixes(untokenize(phrase[i:]))
+        matches = JOURNAL_TRIE.prefixes(titlecase(untokenize(phrase[i:])))
         if len(matches) == 0:
             continue
 

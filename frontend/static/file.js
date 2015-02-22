@@ -144,13 +144,14 @@
             authors = [];
         for (i = 0; i < author_records.length; i += 1) {
             var g = author_records[i].given;
+            var f = author_records[i].fam;
+
             if (g === undefined) {
                 g = [];
             }
 
-            var f = author_records[i].fam;
             if (f === undefined) {
-                f = [];
+                continue;
             }
             authors.push(join_tokens(g.concat(f)));
         }
