@@ -165,7 +165,7 @@
             }
         }
 
-        var lines = ['@author{' + citekey];
+        var lines = ['@article{' + citekey];
         if (author_list.length > 0) {
             lines.push('  author = {' + author_list + '}');
         }
