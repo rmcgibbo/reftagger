@@ -15,3 +15,10 @@ Pande, V. S.; Martinez, T. J. Nature Chemistry 2014, 6, 1044-1048."_ and
 format it into a structured BibTeX record for example.
 
 License: AGPL. Runtime: python 3.4.
+
+-------------------------
+
+**This is just to let you know that this project is unmaintained.**
+
+**If you'd like to adopt this repo, please open a few PRs and I'll happily hand
+it over.**
