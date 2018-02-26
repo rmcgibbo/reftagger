@@ -1,3 +1,8 @@
+[![Project unmaintained][unmaintained-image]][unmaintained-url]
+
+[unmaintained-url]: .github/ISSUE_TEMPLATE.md
+[unmaintained-image]: https://img.shields.io/badge/project-unmaintained-red.svg
+
 Reference Tagger
 ================
 *Parse and tag unstructured academic citations.*
