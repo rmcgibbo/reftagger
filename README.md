@@ -1,6 +1,6 @@
 Reference Tagger
 ================
-*Parse and tag unstructured academic citations.* http://reftag.rmcgibbo.org/
+*Parse and tag unstructured academic citations.*
 
 A system that identifies, parses and formats unstructured academic citations
 using conditional random fields.
